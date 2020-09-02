@@ -1,0 +1,20 @@
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content:space-evenly;
+  background-color: #ffffff;
+}
+
+.footer__home__true{
+  color: black !important;
+}
+
+.footer__add__true{
+  color: black !important;
+}
+
+.footer__profile__true{
+  color: black !important;
+}
