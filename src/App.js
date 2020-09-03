@@ -6,6 +6,7 @@ import Post from "./Post";
 import Footer from "./Footer";
 import MapPosts from "./MapPosts";
 import Profile from "./Profile";
+import WatchPost from "./WatchPost";
 
 import { db, auth } from './firebase';
 import logo from "./assets/logoHeader.png";
@@ -19,9 +20,16 @@ function App() {
 
       <Router>
         <Switch>
+
           <Route path="/post/success">
             <Header />
             <PostSuccess />
+            <Footer />
+          </Route>
+
+          <Route path="/post/:postid">
+            <Header />
+            <WatchPost />
             <Footer />
           </Route>
 

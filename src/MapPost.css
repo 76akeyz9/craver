@@ -1,5 +1,6 @@
-.mapPosts{
-
+a{
+  text-decoration: none; /* no underline */
+  color: inherit;
 }
 
 .mapPosts__eachPost{
@@ -24,4 +25,9 @@
   height: 17rem;
   border-radius: 1rem;
   margin-left: auto;
+}
+
+.mapPosts__IconButton{
+  width: 100%;
+  height: 100%;
 }

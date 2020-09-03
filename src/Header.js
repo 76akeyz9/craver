@@ -5,10 +5,8 @@ import logo from "./assets/logoHeader.png";
 import { Button, Input } from '@material-ui/core';
 import "./Header.css";
 import { db, auth } from './firebase';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
 
 function getModalStyle() {
   const top = 50;
@@ -39,8 +37,8 @@ function Header(){
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("");
 
   const signUp = (event) => {
     console.log("This is OK");
@@ -163,20 +161,22 @@ function Header(){
       </Modal>
 
       <Link to="/">
-        <img
-          className="app__headerImage"
-          src={logo}
-          alt=""
-        />
+        <IconButton>
+          <img
+            className="app__headerImage"
+            src={logo}
+            alt=""
+          />
+        </IconButton>
       </Link>
 
       <div>
       {user ? (
-        <Button type="button" onClick={() => auth.signOut()}>Logout</Button>
+          <IconButton type="button" onClick={() => auth.signOut()}>Logout</IconButton>
       ):(
         <div className="loginContainer">
-          <Button type="button" onClick={() => setOpenSignIn(true)}>Sign In</Button>
-          <Button type="button" onClick={() => setOpen(true)}>Sign Up</Button>
+          <IconButton type="button" onClick={() => setOpenSignIn(true)}>Sign In</IconButton>
+          <IconButton type="button" onClick={() => setOpen(true)}>Sign Up</IconButton>
         </div>
       )}
       </div>
