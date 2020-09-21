@@ -68,6 +68,7 @@ function Header(){
       if (authUser){
         //user has logged in...
         setUser(authUser);
+
       } else {
         // user has logged out...
         setUser(null);

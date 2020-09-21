@@ -24,7 +24,10 @@ function MapPosts({key, postId, caption}) {
     <div className="mapPosts">
       {
         posts.map(({id, post}) => (
-          <Link to={`/post/${id}`}>
+          <Link
+            to={`/post/${id}`}
+            id={id}
+          >
             <div key={id} className="mapPosts__eachPost">
               <img className="mapPost__image" src={post.imageUrl}/>
               {post.caption}
