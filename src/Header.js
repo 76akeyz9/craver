@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import logo from "./assets/logoHeader.png";
 import { Button, Input } from '@material-ui/core';
 import "./Header.css";
-import { db, auth } from './firebase';
+import { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 

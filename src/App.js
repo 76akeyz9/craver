@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./Header";
 import PostSuccess from "./PostSuccess";
@@ -9,12 +9,32 @@ import Profile from "./Profile";
 import WatchPost from "./WatchPost";
 import { useStateValue } from "./StateProvider";
 
-import { db, auth } from "./firebase";
-import logo from "./assets/logoHeader.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button, Input } from "@material-ui/core";
+import { auth } from "./firebase";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  const [{}, dispatch] = useStateValue();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the User just logged in / the user was logged in
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
+
   return (
     <div className="app">
       <Router>

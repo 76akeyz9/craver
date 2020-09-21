@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 function Footer({currentPath}) {
   const isHome = currentPath === "home";

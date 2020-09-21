@@ -1,27 +1,27 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from "react";
 import "./Post.css";
-import CropOriginalIcon from '@material-ui/icons/CropOriginal';
+import CropOriginalIcon from "@material-ui/icons/CropOriginal";
 import Avatar from "@material-ui/core/Avatar";
 import firebase from "firebase";
-import { storage, db, auth} from "./firebase";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { storage, db } from "./firebase";
+import { Link } from "react-router-dom";
 
 function Post() {
-  const [caption, setCaption] = useState('');
+  const [caption, setCaption] = useState("");
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
 
   const handleChange = (e) => {
-    if(e.target.files[0]){
+    if (e.target.files[0]) {
       setImage(e.target.files[0]);
-
     }
   };
 
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
-    uploadTask.on('state_changed',
+    uploadTask.on(
+      "state_changed",
       (snapshot) => {
         //progress function ....
         const progress = Math.round(
@@ -34,27 +34,25 @@ function Post() {
         // error function ....
         console.log(error);
         alert(error.message);
-
       },
-      () =>{
+      () => {
         // complete function ....
         storage
-        .ref('images')
-        .child(image.name)
-        .getDownloadURL()
-        .then(url => {
-          db.collection("posts").add({
-            // To sort posts by uploaded date and time, not by rundom.
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            caption: caption,
-            imageUrl: url,
-            // username: user.displayName
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            db.collection("posts").add({
+              // To sort posts by uploaded date and time, not by rundom.
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              caption: caption,
+              imageUrl: url,
+              // username: user.displayName
+            });
+
+            setCaption("");
+            setImage(null);
           });
-
-          setCaption("");
-          setImage(null);
-        })
-
       }
     );
   };
@@ -68,19 +66,22 @@ function Post() {
         </div>
       </div>
 
-
-      <h4>説明を追加   </h4>
+      <h4>説明を追加 </h4>
 
       <textarea
         className="postStory__caption"
         type="text"
-        placeholder='商品の説明を追加してください'
+        placeholder="商品の説明を追加してください"
         value={caption}
-        onChange={event => setCaption(event.target.value)}>
-      </textarea>
+        onChange={(event) => setCaption(event.target.value)}
+      ></textarea>
       <label>
         <CropOriginalIcon className="postStory__imageIcon" />
-        <input className="postStory__input__file" type="file" onChange={handleChange} />
+        <input
+          className="postStory__input__file"
+          type="file"
+          onChange={handleChange}
+        />
       </label>
       <Link to="post/success">
         <button className="postStory__button" onClick={handleUpload}>
@@ -88,8 +89,7 @@ function Post() {
         </button>
       </Link>
     </div>
-
-  )
+  );
 }
 
 export default Post;

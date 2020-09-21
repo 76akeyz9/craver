@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { db, auth } from './firebase';
+import { db } from './firebase';
 
 function WatchPost(props) {
   const [caption, setCaption] = useState('');

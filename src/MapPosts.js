@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { db, auth } from './firebase';
 import "./MapPost.css";
-import IconButton from "@material-ui/core/IconButton";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 function MapPosts({key, postId, caption}) {
