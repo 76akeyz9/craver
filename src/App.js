@@ -11,6 +11,8 @@ import { useStateValue } from "./StateProvider";
 
 import { auth } from "./firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BuyButton from "./BuyButton";
+import Order from "./Order";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -48,7 +50,11 @@ function App() {
           <Route path="/post/:postid">
             <Header />
             <WatchPost />
-            <Footer />
+          </Route>
+
+          <Route path="/order">
+            <Header />
+            <Order />
           </Route>
 
           <Route path="/post">

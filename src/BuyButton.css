@@ -1,0 +1,11 @@
+.buyButton {
+  background: #fddb3a;
+  border-radius: 2rem;
+  width: 18rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-weight: bolder;
+  margin-top: 10px;
+  position: center;
+  text-align: center;
+}

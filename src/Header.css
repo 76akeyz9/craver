@@ -1,21 +1,47 @@
-.app__header{
+.header {
   position: sticky;
   top: 0;
-  z-index: 1;
   background-color: white;
-  padding: 20px;
+  height: 3rem;
+
   border-bottom: 1px solid lightgray;
   object-fit: contain;
   display: flex;
   justify-content: space-between;
 }
 
-.app__headerImage{
-  object-fit: contain;
-  height: 1em;
+.header__image__div {
+  height: 3rem;
+  margin-left: 1rem;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
 }
 
-.app__signup{
+.header__image {
+  object-fit: contain;
+  height: 1rem;
+}
+
+.header__signs__div {
+  display: flex;
+  height: 3em;
+  margin-top: 2px;
+  align-items: center;
+}
+
+.header__signs {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__each {
+  margin-right: 1rem;
+  font-size: small;
+}
+
+.app__signup {
   display: flex;
   flex-direction: column;
 }

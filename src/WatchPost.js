@@ -1,44 +1,59 @@
-import React, { useState, useEffect} from 'react';
-import { db } from './firebase';
+import React, { useState, useEffect } from "react";
+import BuyButton from "./BuyButton";
+import { db } from "./firebase";
+import Avatar from "@material-ui/core/Avatar";
+import "./WatchPost.css";
 
-function WatchPost(props) {
-  const [caption, setCaption] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [timestamp, setTimestamp] = useState('');
-  const [id, setId] = useState('55Pb9A89YJqCGQrFfdAi');
-
-  useEffect(()=> {
-    fetch("localhost:3000/post/"+props.match.params.id)
-    .then(res => res.json())
-    .then(
-      (result) => {
-        setId(result);
-      }
-    );
-  },[]);
+function WatchPost() {
+  const url = window.location.href.split("post/")[1];
+  const [imageUrl, setImageUrl] = useState("");
+  const [caption, setCaption] = useState("");
+  const [timeStamp, setTimeStamp] = useState("");
 
   useEffect(() => {
-    const docRef = db.collection("posts").doc(id);
-    docRef.get().then(function(doc) {
-      setCaption(doc.data().caption);
-      setImageUrl(doc.data().imageUrl);
-      setTimestamp(doc.data().timestamp);
-      console.log("document ImageUrl is", String(doc.data().imageUrl))
-    });
-    console.log("Image Url is ", imageUrl);
-  },[]);
+    const docRef = db.collection("posts").doc(url);
+    docRef
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          console.log("DocumentData is >>>", doc.data());
+          setImageUrl(doc.data().imageUrl);
+          setCaption(doc.data().caption);
+          setTimeStamp(doc.data().timeStamp);
+        } else {
+          console.log("No Document Match!");
+        }
+      })
+      .catch(function (error) {
+        console.log("Error Getting Document:", error);
+      });
+  }, []);
 
   return (
-    <div className="">
-      {
-          <div key={id} className="">
-            <img className="" src={imageUrl}/>
-            {caption}
-          </div>
-      }
+    <div className="watchPost">
+      <div className="watchPost__sticky">
+        <img className="watchPost__image" src={imageUrl} />
+        <div className="watchPost__user">
+          <Avatar className="watchPost__avatar" alt="" src />
+          <div className="watchPost__username">きいち</div>
+          <div className="watchPost__follow">Follow</div>
+        </div>
+      </div>
 
+      <div className="watchPost__caption">{caption}</div>
+      <div className="watchPost__footer">
+        <div className="watchPost__buy">
+          <BuyButton
+            id={url}
+            title="TEST"
+            price={5000.0}
+            image={imageUrl}
+            rating={5}
+          />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default WatchPost;

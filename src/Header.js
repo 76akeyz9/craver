@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import logo from "./assets/logoHeader.png";
-import { Button, Input } from '@material-ui/core';
+import { Button, Input } from "@material-ui/core";
 import "./Header.css";
-import { auth } from './firebase';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import { auth } from "./firebase";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
 
 function getModalStyle() {
   const top = 50;
@@ -21,16 +21,16 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
-    width: 400,
+    position: "absolute",
+    // width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
-function Header(){
+function Header() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -43,16 +43,17 @@ function Header(){
   const signUp = (event) => {
     console.log("This is OK");
     event.preventDefault();
-    auth.createUserWithEmailAndPassword(email, password)
-    .then((authUser) =>{
-      return authUser.user.updateProfile({
-        displayName: username
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          displayName: username,
+        });
       })
-    })
-    .catch((error) => alert(error.message));
+      .catch((error) => alert(error.message));
 
     setOpen(false);
-  }
+  };
 
   const signIn = (event) => {
     event.preventDefault();
@@ -61,35 +62,30 @@ function Header(){
       .catch((error) => alert(error.message));
 
     setOpenSignIn(false);
-  }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser){
+      if (authUser) {
         //user has logged in...
         setUser(authUser);
-
       } else {
         // user has logged out...
         setUser(null);
       }
-    })
+    });
 
     return () => {
       // perform some cleanup actions
       unsubscribe();
-    }
+    };
   }, [user, username]);
 
   const bodySignup = (
     <div style={modalStyle} className={classes.paper}>
       <form className="app__signup">
         <center>
-          <img
-            src={logo}
-            alt=""
-            height="32px"
-          />
+          <img src={logo} alt="" height="32px" />
         </center>
 
         <Input
@@ -110,8 +106,9 @@ function Header(){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit" onClick={signUp}>Sign Up</Button>
-
+        <Button type="submit" onClick={signUp}>
+          Sign Up
+        </Button>
       </form>
     </div>
   );
@@ -120,11 +117,7 @@ function Header(){
     <div style={modalStyle} className={classes.paper}>
       <form className="app__signup">
         <center>
-          <img
-            src={logo}
-            alt=""
-            height="32px"
-          />
+          <img src={logo} alt="" height="32px" />
         </center>
 
         <Input
@@ -139,50 +132,61 @@ function Header(){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit" onClick={signIn}>Sign In</Button>
-
+        <Button type="submit" onClick={signIn}>
+          Sign In
+        </Button>
       </form>
     </div>
   );
 
-  return(
-    <div className="app__header">
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        >
+  return (
+    <div className="header">
+      <Modal open={open} onClose={() => setOpen(false)}>
         {bodySignup}
       </Modal>
 
-      <Modal
-        open={openSignIn}
-        onClose={() => setOpenSignIn(false)}
-        >
+      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
         {bodySignIn}
       </Modal>
 
       <Link to="/">
-        <IconButton>
-          <img
-            className="app__headerImage"
-            src={logo}
-            alt=""
-          />
-        </IconButton>
+        <div className="header__image__div">
+          {/* <IconButton> */}
+          <img className="header__image" src={logo} alt="" />
+          {/* </IconButton> */}
+        </div>
       </Link>
 
-      <div>
-      {user ? (
-          <IconButton type="button" onClick={() => auth.signOut()}>Logout</IconButton>
-      ):(
-        <div className="loginContainer">
-          <IconButton type="button" onClick={() => setOpenSignIn(true)}>Sign In</IconButton>
-          <IconButton type="button" onClick={() => setOpen(true)}>Sign Up</IconButton>
-        </div>
-      )}
+      <div className="header__signs__div">
+        {user ? (
+          <div
+            className="header__each"
+            type="button"
+            onClick={() => auth.signOut()}
+          >
+            Logout
+          </div>
+        ) : (
+          <div className="header__signs">
+            <div
+              className="header__each"
+              type="button"
+              onClick={() => setOpenSignIn(true)}
+            >
+              Sign In
+            </div>
+            <div
+              className="header__each"
+              type="button"
+              onClick={() => setOpen(true)}
+            >
+              Sign Up
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
 export default Header;

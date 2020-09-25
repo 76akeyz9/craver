@@ -1,0 +1,83 @@
+.watchPost {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.watchPost__image {
+  max-height: 20rem;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.watchPost__sticky {
+  position: sticky;
+  top: 3rem;
+  background-color: white;
+}
+
+.watchPost__user {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  align-items: center;
+  background-color: white;
+  padding-bottom: 10px;
+  margin-top: 0.7rem;
+}
+
+.watchPost__username {
+  line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.watchPost__avatar {
+  width: 2.3rem !important;
+  height: 2.3rem !important;
+  margin-left: 20px;
+}
+
+.watchPost__follow {
+  line-height: 1.9rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 20px;
+
+  background: #f4ebc1;
+  border-radius: 2rem;
+  width: 6rem;
+  font-weight: 500;
+  font-size: 1rem;
+  position: center;
+  text-align: center;
+}
+
+.watchPost__caption {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.watchPost__footer {
+  bottom: 0;
+  height: 5.5rem;
+  width: 100%;
+  background-color: white;
+  position: sticky;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.watchPost__buy {
+  text-align: center !important;
+  position: fixed;
+  bottom: 1.3rem;
+}

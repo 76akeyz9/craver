@@ -1,6 +1,7 @@
 export const initialState = {
-  basket: [],
+  basket: {},
   user: null,
+  postData: {},
 };
 
 // Selector, Calcurator
@@ -12,7 +13,26 @@ const reducer = (state, action) => {
     case "ADD_TO_BASKET":
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        basket: {
+          id: action.item.id,
+          image: action.item.image,
+        },
+      };
+
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
+
+    case "SET_POSTDATA":
+      return {
+        ...state,
+        postData: {
+          id: action.item.id,
+          imageUrl: action.item.imageUrl,
+          caption: action.item.caption,
+        },
       };
 
     case "EMPTY_BASKET":
@@ -38,12 +58,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: newBasket,
-      };
-
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.user,
       };
 
     default:
