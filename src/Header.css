@@ -12,7 +12,7 @@
 
 .header__image__div {
   height: 3rem;
-  margin-left: 1rem;
+  margin-left: 0.3rem;
   margin-top: 2px;
   display: flex;
   align-items: center;
@@ -37,8 +37,11 @@
 }
 
 .header__each {
-  margin-right: 1rem;
   font-size: small;
+}
+
+.header__signin {
+  margin-right: 1.2rem;
 }
 
 .app__signup {

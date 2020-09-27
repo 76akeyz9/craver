@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  withStyles,
+  makeStyles,
+  createMuiTheme,
+  MuiThemeProvider,
+} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./ui/Theme";
 import "./Order.css";
 
 function Order() {
@@ -24,6 +30,9 @@ function Order() {
     },
     root: {
       width: "100%",
+      color: "#f5f5f5",
+      backgroundColor: "#f5f5f5",
+      // backgroundColor: theme.palette.primary,
     },
     backButton: {
       marginRight: theme.spacing(1),
@@ -35,16 +44,22 @@ function Order() {
   }));
   const classes = useStyles();
 
-  // Slider for tips
+  // Slider for tips, you can change slider color
   const PrettoSlider = withStyles({
     root: {
-      color: "#4051B5",
+      // color: "#ffb74d",
+      // color: '#52af77',
+      // color: "#b28704",
+      // color: "#fdd835",
+      // color: "#ffeb3b",
+      // color: "#4051B5",
       height: 8,
     },
     thumb: {
       height: 24,
       width: 24,
-      backgroundColor: "#4051B5",
+      // backgroundColor: "#fdd835",
+      // backgroundColor: "#4051B5",
       // backgroundColor: "#fddb3a",
       border: "2px solid currentColor",
       marginTop: -8,
@@ -82,7 +97,17 @@ function Order() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
   // Finish status bar part
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#f5f5f5",
+        // main: "#ffb74d",
+      },
+    },
+  });
 
   return (
     <div className="order">
@@ -98,6 +123,7 @@ function Order() {
       </div>
       {/* Finish Status Bar */}
 
+      {/* Body page for 3pages */}
       {(() => {
         switch (activeStep) {
           case 0:
@@ -155,9 +181,15 @@ function Order() {
               </Button>
             </div>
             <div className="order__button__next">
-              <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
+              <ThemeProvider theme={theme}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNext}
+                >
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </ThemeProvider>
             </div>
           </div>
         </div>

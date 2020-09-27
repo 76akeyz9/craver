@@ -18,3 +18,8 @@
 .footer__profile__true {
   color: black !important;
 }
+
+.textDecoration {
+  color: #212121;
+  text-decoration: none;
+}

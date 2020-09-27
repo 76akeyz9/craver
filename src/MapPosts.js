@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
 import MapPost from "./MapPost";
+import "./MapPosts.css"
 
 function MapPosts() {
   const [posts, setPosts] = useState([]);
@@ -21,6 +22,7 @@ function MapPosts() {
 
   return (
     <div className="mapPosts">
+      <div className="adjustment"></div>
       {posts.map(({ id, post }) => (
         <MapPost id={id} post={post} />
       ))}

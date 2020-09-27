@@ -1,10 +1,12 @@
 .watchPost {
   max-width: 500px;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  background-color: white;
 }
 
 .watchPost__image {
@@ -24,7 +26,6 @@
   width: 100%;
   height: 3rem;
   align-items: center;
-  background-color: white;
   padding-bottom: 10px;
   margin-top: 0.7rem;
 }
@@ -49,35 +50,32 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: 20px;
-
-  background: #f4ebc1;
+  /* background: #ffff00; */
+  /* background: #ffeb3b; */
+  background: #fff179;
   border-radius: 2rem;
   width: 6rem;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: small;
   position: center;
   text-align: center;
+
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .watchPost__caption {
-  margin-right: 20px;
-  margin-left: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: white;
+  height: 100%;
+  min-height:100%;
 }
 
 .watchPost__footer {
-  bottom: 0;
-  height: 5.5rem;
-  width: 100%;
-  background-color: white;
-  position: sticky;
-
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-.watchPost__buy {
-  text-align: center !important;
+  background: white;
   position: fixed;
-  bottom: 1.3rem;
+  bottom: 1.4em;
+
 }

@@ -1,8 +1,15 @@
-.postStory__head {
+.post {
   display: flex;
-  height: 3em;
   align-items: center;
-  padding: 20px;
+}
+
+.post__adjust {
+  height: 4px;
+}
+
+.post__button {
+  display: flex !important;
+  justify-content: center;
 }
 
 .postStory__avatar {

@@ -43,17 +43,16 @@ function WatchPost() {
       <Typography variant="body2" color="textSecondary" component="p">
         <div className="watchPost__caption">{caption}</div>
       </Typography>
+      <div className="adjustment"></div>
 
       <div className="watchPost__footer">
-        <div className="watchPost__buy">
-          <BuyButton
-            id={url}
-            title="TEST"
-            price={5000.0}
-            image={imageUrl}
-            rating={5}
-          />
-        </div>
+        <BuyButton
+          id={url}
+          title="TEST"
+          price={5000.0}
+          image={imageUrl}
+          rating={5}
+        />
       </div>
     </div>
   );

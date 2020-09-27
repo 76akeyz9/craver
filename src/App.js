@@ -8,6 +8,8 @@ import MapPosts from "./MapPosts";
 import Profile from "./Profile";
 import WatchPost from "./WatchPost";
 import { useStateValue } from "./StateProvider";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./ui/Theme";
 
 import { auth } from "./firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -40,38 +42,42 @@ function App() {
   return (
     <div className="app">
       <Router>
+        <ThemeProvider theme={theme}>
+          <Header />
+        </ThemeProvider>
+
         <Switch>
           <Route path="/post/success">
-            <Header />
-            <PostSuccess />
-            <Footer />
+            <ThemeProvider theme={theme}>
+              <PostSuccess />
+              <Footer />
+            </ThemeProvider>
           </Route>
 
           <Route path="/post/:postid">
-            <Header />
-            <WatchPost />
+            <ThemeProvider theme={theme}>
+              <WatchPost />
+            </ThemeProvider>
           </Route>
 
           <Route path="/order">
-            <Header />
             <Order />
           </Route>
 
           <Route path="/post">
-            <Header />
             <Post />
           </Route>
 
           <Route path="/profile">
-            <Header />
             <Profile />
             <Footer currentPath="profile" />
           </Route>
 
           <Route path="/">
-            <Header />
-            <MapPosts />
-            <Footer currentPath="home" />
+            <ThemeProvider theme={theme}>
+              <MapPosts />
+              <Footer currentPath="home" />
+            </ThemeProvider>
           </Route>
         </Switch>
       </Router>
