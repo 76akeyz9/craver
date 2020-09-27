@@ -5,6 +5,8 @@ import Avatar from "@material-ui/core/Avatar";
 import firebase from "firebase";
 import { storage, db } from "./firebase";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 function Post() {
   const [caption, setCaption] = useState("");
@@ -57,8 +59,26 @@ function Post() {
     );
   };
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      // width: '25ch',
+    },
+  }));
+  const classes = useStyles();
+
+  const handleChangeText = (event) => {
+    setCaption(event.target.value);
+  };
+
   return (
-    <div className="postStory">
+    <div>
+
       <div className="postStory__head">
         <Avatar className="postStory__avatar" alt="" />
         <div className="postStory__avatar__name">
@@ -66,15 +86,37 @@ function Post() {
         </div>
       </div>
 
-      <h4>説明を追加 </h4>
+      <div className={classes.root}>
+        <TextField
+          className="post__caption"
+          id="outlined-full-width"
+          label="Label"
+          style={{ margin: 8 }}
+          placeholder="Placeholder"
+          helperText="Full width!"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+          onChange={handleChangeText}
+          value={caption}
+        />
+      </div>
+      <div className={classes.root}>
+        <TextField
+          id="outlined-multiline-static"
+          label="Multiline"
+          multiline
+          rows={5}
+          defaultValue="Default Value"
+          variant="outlined"
+          style={{ margin: 8 }}
+          fullWidth
+        />
+      </div>
 
-      <textarea
-        className="postStory__caption"
-        type="text"
-        placeholder="商品の説明を追加してください"
-        value={caption}
-        onChange={(event) => setCaption(event.target.value)}
-      ></textarea>
       <label>
         <CropOriginalIcon className="postStory__imageIcon" />
         <input
@@ -83,11 +125,20 @@ function Post() {
           onChange={handleChange}
         />
       </label>
+
       <Link to="post/success">
         <button className="postStory__button" onClick={handleUpload}>
           投稿する
         </button>
       </Link>
+
+      {/* <textarea
+        className="postStory__caption"
+        type="text"
+        placeholder="商品の説明を追加してください"
+        value={caption}
+        onChange={(event) => setCaption(event.target.value)}
+      ></textarea> */}
     </div>
   );
 }

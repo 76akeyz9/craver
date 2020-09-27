@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
-import "./MapPost.css";
 import MapPost from "./MapPost";
 
 function MapPosts() {

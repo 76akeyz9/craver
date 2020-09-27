@@ -1,38 +1,24 @@
-.postStory{
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: white;
-}
-
-.postStory__head{
+.postStory__head {
   display: flex;
   height: 3em;
   align-items: center;
   padding: 20px;
 }
 
-.postStory__avatar{
+.postStory__avatar {
   margin-right: 20px;
   height: 3rem !important;
   width: 3rem !important;
-
 }
 
-.postStory__caption{
-  height: 30rem;
-  border-radius: 1rem;
-  padding: 24px;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
-  border: 0;
-  font-size: 1.5rem;
+.post__caption {
+  /* display: inline-block !important;
+  padding: 15px 10px !important;
+  line-height: 10rem !important;
+ */
 }
 
-.postStory__button{
+.postStory__button {
   z-index: 1;
   position: absolute;
   bottom: 2rem;
@@ -57,28 +43,11 @@
   border-color: transparent;
 }
 
-.app__form{
-  padding: 20px;
-  z-index: 1;
-  background-color: #e9e9eb;
-  width: 90%;
-  margin: 20px;
-}
-
-h4{
-  font-size: 1.3rem;
-  margin-bottom: 0.5em;
-  text-align: initial;
-  color: #212326;
-  height: 34px;
-  size: 28px;
-}
-
-.postStory__input__file{
+.postStory__input__file {
   display: none;
 }
 
-.postStory__imageIcon{
+.postStory__imageIcon {
   margin-top: 0.5em;
   color: #222222;
   width: initial;
@@ -86,3 +55,23 @@ h4{
   width: 2em !important;
   height: 2em !important;
 }
+
+/* .postStory {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+} */
+
+/* .postStory__caption{
+  height: 30rem;
+  border-radius: 1rem;
+  padding: 24px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+  border: 0;
+  font-size: 1.5rem;
+} */

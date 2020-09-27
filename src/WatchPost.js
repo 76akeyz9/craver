@@ -3,6 +3,7 @@ import BuyButton from "./BuyButton";
 import { db } from "./firebase";
 import Avatar from "@material-ui/core/Avatar";
 import "./WatchPost.css";
+import { Typography } from "@material-ui/core";
 
 function WatchPost() {
   const url = window.location.href.split("post/")[1];
@@ -39,8 +40,10 @@ function WatchPost() {
           <div className="watchPost__follow">Follow</div>
         </div>
       </div>
+      <Typography variant="body2" color="textSecondary" component="p">
+        <div className="watchPost__caption">{caption}</div>
+      </Typography>
 
-      <div className="watchPost__caption">{caption}</div>
       <div className="watchPost__footer">
         <div className="watchPost__buy">
           <BuyButton

@@ -1,12 +1,49 @@
+.order {
+  display: flex;
+  flex-direction: column;
+}
 .order__image {
   object-fit: contain;
   width: 13rem;
   height: 10rem;
   margin-left: 1rem;
-
 }
 
-.order__container{
-    border-bottom: 1px solid lightgray;
+.order__tip__bar {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
+.order__container {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+}
+
+.order__item__detail__container {
+  margin-left: 2rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.order__caption {
+  font-size: 1em;
+  margin-top: 17px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.order__buttons {
+  display: flex;
+}
+
+.order__button__back {
+  margin-left: 1rem;
+}
+
+.order__button__next {
+  margin-left: auto;
+  margin-right: 1rem;
 }
