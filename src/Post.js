@@ -191,11 +191,11 @@ function Post() {
         />
         <label htmlFor="icon-button-file">
           <IconButton
-            color="primary"
+            color="#3f51b5"
             aria-label="upload picture"
             component="span"
           >
-            <PhotoCamera />
+            <PhotoCamera color="#3f51b5" />
           </IconButton>
         </label>
       </div>

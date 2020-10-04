@@ -30,9 +30,6 @@ function Order() {
     },
     root: {
       width: "100%",
-      color: "#f5f5f5",
-      backgroundColor: "#f5f5f5",
-      // backgroundColor: theme.palette.primary,
     },
     backButton: {
       marginRight: theme.spacing(1),
@@ -51,7 +48,7 @@ function Order() {
       // color: '#52af77',
       // color: "#b28704",
       // color: "#fdd835",
-      // color: "#ffeb3b",
+      color: "#ffeb3b",
       // color: "#4051B5",
       height: 8,
     },
@@ -115,7 +112,7 @@ function Order() {
       <div className={classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
-            <Step key={label}>
+            <Step key={label} className="step__color">
               <StepLabel>{label}</StepLabel>
             </Step>
           ))}
