@@ -13,10 +13,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import PersonIcon from "@material-ui/icons/Person";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "@material-ui/styles";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import theme from "./ui/Theme";
 
 function Footer({ currentPath, props }) {
@@ -70,43 +73,57 @@ function Footer({ currentPath, props }) {
     window: PropTypes.func,
   };
 
+  // for More Icon
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  // For More Icon Ends
+
   return (
     <div id="footer" className="footer">
       <React.Fragment>
         <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <HideOnScroll {...props}>
-          <AppBar position="fixed" color="primary" className={classes.appBar}>
-            <Toolbar>
-              <Link to="/" className="textDecoration">
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="open drawer"
-                >
-                  <HomeOutlinedIcon />
-                </IconButton>
-              </Link>
-              <Link to="/post" className="textDecoration">
-                <Fab
-                  color="secondary"
-                  aria-label="add"
-                  className={classes.fabButton}
-                >
-                  <AddIcon />
-                </Fab>
-              </Link>
+          <CssBaseline />
+          <HideOnScroll {...props}>
+            <AppBar position="fixed" color="primary" className={classes.appBar}>
+              <Toolbar>
+                <Link to="/" className="textDecoration">
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                  >
+                    <HomeOutlinedIcon />
+                  </IconButton>
+                </Link>
+                <Link to="/post" className="textDecoration">
+                  <Fab
+                    color="secondary"
+                    aria-label="add"
+                    className={classes.fabButton}
+                  >
+                    <AddIcon />
+                  </Fab>
+                </Link>
 
-              <div className={classes.grow} />
-              <IconButton color="inherit">
-                <SearchIcon />
-              </IconButton>
-              <IconButton edge="end" color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </HideOnScroll>
+                <div className={classes.grow} />
+                <IconButton color="inherit">
+                  <SearchIcon />
+                </IconButton>
+                <Link to="/setting" className="textDecoration">
+                  <IconButton edge="end" color="inherit">
+                    <PersonIcon />
+                  </IconButton>
+                </Link>
+              </Toolbar>
+            </AppBar>
+          </HideOnScroll>
         </ThemeProvider>
       </React.Fragment>
 

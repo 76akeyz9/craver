@@ -5,7 +5,6 @@ import PostSuccess from "./PostSuccess";
 import Post from "./Post";
 import Footer from "./Footer";
 import MapPosts from "./MapPosts";
-import Profile from "./Profile";
 import WatchPost from "./WatchPost";
 import { useStateValue } from "./StateProvider";
 import { ThemeProvider } from "@material-ui/styles";
@@ -15,19 +14,35 @@ import { auth } from "./firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BuyButton from "./BuyButton";
 import Order from "./Order";
+import Setting from "./Setting";
+import Profile from "./components/Profile";
 
 function App() {
   const [{}, dispatch] = useStateValue();
+  var name, email, photoUrl, uid, emailVerified;
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      console.log("THE USER IS >>> ", authUser);
-
+      console.log("User from App.js >>> ", authUser);
       if (authUser) {
         // the User just logged in / the user was logged in
+
+        name = authUser.displayName;
+        email = authUser.email;
+        photoUrl = authUser.photoURL;
+        emailVerified = authUser.emailVerified;
+        uid = authUser.uid;
+
         dispatch({
           type: "SET_USER",
-          user: authUser,
+          user: {
+            name: name,
+            email: email,
+            photoUrl: photoUrl,
+            emailVerified: emailVerified,
+            uid: uid,
+          },
+          // user: authUser,
         });
       } else {
         // the user is logged out
@@ -70,7 +85,10 @@ function App() {
 
           <Route path="/profile">
             <Profile />
-            <Footer currentPath="profile" />
+          </Route>
+
+          <Route path="/setting">
+            <Setting />
           </Route>
 
           <Route path="/">
